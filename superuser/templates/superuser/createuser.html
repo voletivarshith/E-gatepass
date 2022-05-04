@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create user</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {% for i in messages %}
+            <p>{{i}} {{i.tags}}</p>
+        {% endfor %}
+        <!-- Username password first name last name is student is hod is  -->
+        <p>Username</p>
+        <input type="text" name="username">
+        <p>Email</p>
+        <input type="email" name="email">
+        <p>Password</p>
+        <input type="password" name="password">
+        <p>Is Student <input type="checkbox" name="permission" value="Student"></p>
+        <p>Is Counsellor <input type="checkbox" name="permission" value="Counsellor"></p>
+        <p>Is Yearcoordinator <input type="checkbox" name="permission" value="Yearcoordinator"></p>
+        <p>Is HOD <input type="checkbox" name="permission" value="HOD"></p>
+        <p>Is Principal <input type="checkbox" name="permission" value="Principal"></p>
+        <p></p>
+        <input type="submit" value="Create">
+    </form>
+</body>
+</html>

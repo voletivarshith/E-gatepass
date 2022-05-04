@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Superuser dashboard</title>
+</head>
+<body>
+    {% for i in messages %}
+        <p>{{i}}</p>
+    {% endfor %}
+    <h1>Users</h1>
+    <p><a href="{% url 'superuser:users' num=1 %}">View Principal</a></p>
+    <p><a href="{% url 'superuser:users' num=2 %}">View HOD</a></p>
+    <p><a href="{% url 'superuser:users' num=3 %}">View yearcoordinators</a></p>
+    <p><a href="{% url 'superuser:users' num=4 %}">View Counsellors</a></p>
+    <p><a href="{% url 'superuser:users' num=5 %}">View Students</a></p>
+    <p><a href="{% url 'superuser:create-user' %}">Create user</a></p>
+</body>
+</html>

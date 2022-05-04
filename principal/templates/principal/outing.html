@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pending Gatepass requests</title>
+</head>
+<body>
+    <h1>Pending Gatepass requests</h1>
+    {% for i in forms %}
+        <p>{{i.student.first_name}} {{i.student.last_name}}</p>
+        <p><a mailto="{{i.email}}">Email to the student</a></p>
+        <p>{{i.department}}</p>
+        <p>{{i.year}}</p>
+        <p>{{i.applied_date}}</p>
+        <p>{{i.from_date}}</p>
+        <p>{{i.to_date}}</p>
+        <p>{{i.place}}</p>
+        <p>{{i.reason_for_leave}}</p>
+        <p>{{i.parent_name}}</p>
+        <p>{{i.parent_pno}}</p>
+    {% endfor %}
+</body>
+</html>

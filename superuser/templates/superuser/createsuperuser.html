@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create super user</title>
+</head>
+<body>
+    {% csrf_token %}
+    {% for i in messages %}
+        <p>{{i}} {{i.tag}}</p>
+    {% endfor %}
+    <form method="POST">
+        <p>Username</p>
+        <input type="text" name="username">
+        <p>Email</p>
+        <input type="text" name="email">
+        <p>Password</p>
+        <input type="password" name="password">
+        <p></p>
+        <input type="submit" value="Create super user">
+    </form>
+</body>
+</html>

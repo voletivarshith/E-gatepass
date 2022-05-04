@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Users</title>
+</head>
+<body>
+    <h1>Active Users</h1>
+    {% if active_users_query %}
+        {% for i in active_users_query %}
+            <p><a href="{% url 'superuser:user-details' num=i.id %}">{{i}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'superuser:delete-user' num=i.id %}">Delete</a></p>
+        {% endfor %}
+    {% else %}
+        <p>No data found</p>
+    {% endif %}
+</body>
+</html>
