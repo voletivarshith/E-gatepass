@@ -4,7 +4,12 @@
     <title>Student-dashboard</title>
 </head>
 <body>
+    {% for i in messages %}
+        <p>{{i}}</p>
+    {% endfor %}
     <!-- URLs student, -->
-    <a href="#">Apply for outing</a>
+    <p><a href="{% url 'student:apply-gatepass' %}">Apply for outing</a></p>
+    <!-- <p><a href="{% url 'student:previous-outing' %}">Previous outing forms</a></p> -->
+    <p><a href="{% url 'logout' %}">Logout</a></p>
 </body>
 </html>

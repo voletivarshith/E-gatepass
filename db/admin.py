@@ -10,10 +10,9 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
-        (_('Permissions'), {
-            'fields': ('is_active', 'is_student','is_counsellor',  'is_year_coordinator', 'is_hod', 'is_staff', 'is_superuser',),
-        }),
+        (_('Permissions'), {'fields': ('is_active', 'is_student','is_counsellor',  'is_year_coordinator', 'is_hod', 'is_staff', 'is_superuser',)}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (_("Deparment"),{'fields': ('department',)})
     )
 class GatepassAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):

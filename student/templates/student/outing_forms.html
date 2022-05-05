@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+    <h1>{{title}}</h1>
+    {% if forms %}
+        {% for i in forms %}
+            <h2>{{i}}</h2>
+            <p>From date {{i.from_date}}</p>
+            <p>To date {{i.to_date}}</p>
+            <p>Place {{i.place}}</p>
+            <p>Reason for leave {{i.reason_for_leave}}</p>
+            <p>Parents name {{i.parents_name}}</p>
+            <p>Parents mobile no {{i.parents_pno}}</p>
+        {% endfor %}
+    {% else %}
+        <h1>No record found</h1>
+    {% endif %}
+</body>
+</html>

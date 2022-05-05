@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Outing forms</title>
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+            <p>Section</p>
+            <input type="text" name="section">
+            <p>Register number</p>
+            <input type="number" name="register_no">
+            <p>Year</p>
+            <input type="year" name="year" min="1" max="4">
+            <p>Counsellor</p>
+            <select name="counsellor" >
+                {% for i in counsellor %}
+                    <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select>
+            <p>From date</p>
+            <input type="datetime-local" name="from_date" id="min-date" onclick="get_todaysdate()">
+            <p>To date</p>
+            <input type="datetime-local" name="to_date">
+            <p>Place</p>
+            <input type="text" name="place" minlength="3" maxlength="101" required>
+            <p>Reason for leave</p>
+            <input type="text" name="reason_for_leave" minlength="4" maxlength="101">
+            <p>Parents name</p>
+            <input type="text" name="parents_name" minlength="5" maxlength="101" required>
+            <p>Parents phone no</p>
+            <input type="number" name="parents_pno" required>
+            <p>Do u need Emergency outing?</p>
+            <input type="checkbox" name="Emergency">
+            <br>
+            <input type="submit" value="Apply">
+        </form>
+    </body>
+</html>

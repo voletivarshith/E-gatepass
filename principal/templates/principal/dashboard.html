@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Principal dashboard</title>
+</head>
+<body>
+    {% for i in messages %}
+        <p>{{i}}</p>
+    {% endfor %}
+    <p><a href="{% url 'principal:outing-forms' %}">View Pending outing forms</a></p>
+    <p><a href="{% url 'principal:previous-outing-forms' %}">View Previous outing forms</a></p>
+    <p><a href="{% url 'principal:denied-outing-forms' %}">View Denied outing forms</a></p>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+</body>
+</html>

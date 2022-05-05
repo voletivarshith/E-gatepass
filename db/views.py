@@ -17,13 +17,15 @@ def user_login(request):
                 print("redirecting")
                 return redirect("superuser:super-user-dashboard")
             elif request.user.is_staff:
-                pass
+                return redirect("principal:principal-dashboard")
+            elif request.user.is_hod:
+                return redirect("hod:")
             elif request.user.is_year_coordinator:
                 pass
             elif request.user.is_counsellor:
                 pass
             elif request.user.is_student:
-                return redirect("student")
+                return redirect("student:student-dashboard")
         else:
             messages.error(request,"Invalid username or password")
     return render(request,"db/login.html",)

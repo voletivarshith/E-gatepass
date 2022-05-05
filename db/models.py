@@ -36,7 +36,7 @@ class User(AbstractUser):
     is_hod = models.BooleanField(_("HOD"),default=False,help_text=_("If HOD check this"))
     is_warden = models.BooleanField(_("Warden"),default=False,help_text=_("If warden check this"))
     department = models.ForeignKey(Department,on_delete=models.CASCADE,null=True)
-    year = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(4)],null=True)
+    year = models.IntegerField(null=True)
     def save(self,*args,**kwargs):
         if(self.is_year_coordinator or self.is_counsellor or self.is_staff or self.is_superuser or self.is_hod or self.is_warden):
             self.is_student = False
@@ -49,7 +49,7 @@ class Gatepass(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE,related_name="student")
     section = models.CharField(max_length=2)
     register_no = models.CharField(max_length=15)
-    year = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(4)])
+    year = models.IntegerField()
     counsellor = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,related_name="Counsellor")
     year_coordinator = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,name="Year coordinator")
     applied_date = models.DateField()
@@ -66,7 +66,11 @@ class Gatepass(models.Model):
     hod_sign = models.BooleanField(default=False)
     principal_sign = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
+    deny = models.BooleanField(default=False)
     def save(self,*args,**kwargs):
+        if self._state.adding:
+            from datetime import date
+            self.applied_date = date.today()
         if(self.hod_sign or self.principal_sign):
             self.approved = True
         super().save(*args,**kwargs)

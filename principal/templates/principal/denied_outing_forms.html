@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Denied outing forms</title>
+</head>
+<body>
+    <h1>Denied outing forms</h1>
+    {% if forms %}
+        {% for i in forms %}
+            <p>{{i.student.first_name}} {{i.student.last_name}}</p>
+            <p><a href="mailto:{{i.student.email}}">Email to the student</a></p>
+            <p>Department {{i.student.department}}</p>
+            <p>Year {{i.year}}</p>
+            <p>Applied on {{i.applied_date}}</p>
+            <p>From date {{i.from_date}}</p>
+            <p>To date {{i.to_date}}</p>
+            <p>Place{{i.place}}</p>
+            <p>Reason for leave {{i.reason_for_leave}}</p>
+            <p>Parent name {{i.parents_name}}</p>
+            <p>Parent's phone number {{i.parents_pno}}</p>
+            <button><a href="{% url 'principal:approve-outing-form' id=i.id %}">Approve</a></button>
+        {% endfor %}
+    {% else %}
+        <p>No record found</p>
+    {% endif %}
+</body>
+</html>
