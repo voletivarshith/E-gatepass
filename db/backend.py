@@ -4,7 +4,7 @@ from django.contrib.admin import ModelAdmin
 class EmailBackend(ModelBackend):
     def is_valid_user(self,username=None,password=None):
         try:
-            user_obj = User.objects.get(email=username)
+            user_obj = User.objects.get(email__iexact=username)
         except User.DoesNotExist:
             return None
         if user_obj.check_password(password):

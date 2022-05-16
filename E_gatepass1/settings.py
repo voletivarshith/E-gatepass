@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     'principal',
     'superuser',
     'student',
+    'counsellor',
+    'hod',
+    'year_coordinator'
 ]
 
 MIDDLEWARE = [

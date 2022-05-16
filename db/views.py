@@ -19,11 +19,11 @@ def user_login(request):
             elif request.user.is_staff:
                 return redirect("principal:principal-dashboard")
             elif request.user.is_hod:
-                return redirect("hod:")
+                return redirect("hod:hod-dashboard")
             elif request.user.is_year_coordinator:
-                pass
+                return redirect("year_coordinator:year-coordinator-dashboard")
             elif request.user.is_counsellor:
-                pass
+                return redirect("counsellor:counsellor-dashboard")
             elif request.user.is_student:
                 return redirect("student:student-dashboard")
         else:
