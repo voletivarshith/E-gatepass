@@ -19,8 +19,8 @@
             <p>Reason for leave {{i.reason_for_leave}}</p>
             <p>Parents name {{i.parents_name}}</p>
             <p>Parents phone no {{i.parents_pno}}</p>
-            <button><a href="{% url 'year_coordinator:approve-outing-form' id=i.id %}">Approve</a></button>
-            <button><a href="{% url 'year_coordinator:deny-outing-form' id=i.id %}">Deny</a></button>
+            <button><a href="{% url 'hod:approve-outing-form' id=i.id %}">Approve</a></button>
+            <button><a href="{% url 'hod:deny-outing-form' id=i.id %}">Deny</a></button>
         {% endfor %}
     {% else %}
         <p>No record found</p>

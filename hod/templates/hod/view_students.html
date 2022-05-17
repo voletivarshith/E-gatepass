@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Students</title>
+</head>
+<body>
+    <h1>Students</h1>
+    {% for i in messages %}
+        <p>{{i}}</p>
+    {% endfor %}
+    <table style="border:1 solid">
+        <tr>Username</tr>
+        <tr>Year</tr>
+        <tr>Change password</tr>
+        <tr>
+            {% for i in students %}
+                <td>{{i.username}}</td>
+                <td>{{i.year}}</td>
+                <td><a href="{% url 'hod:change-student_password' id=i.id %}">Change password</a></td>
+            {% endfor %}
+        </tr>
+    </table>
+</body>
+</html>

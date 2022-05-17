@@ -14,7 +14,7 @@ class User(AbstractUser):
         _('superuser status'),
         default=False,
         help_text=_(
-            "Check this if the user is super user(Super user has the highest privilages)"
+            "Check this if the user is super user(Administrator)"
         ),
     )
     is_staff = models.BooleanField(
@@ -73,10 +73,6 @@ class Gatepass(models.Model):
             self.applied_date = date.today()
         if(self.hod_sign or self.principal_sign):
             self.approved = True
-        if self.deny:
-            self.counsellor_sign = False
-            self.year_coordinator_sign = False
-            self.principal_sign = False
         super().save(*args,**kwargs)
     def __str__(self):
         return str(self.student)+"**Outing**"+str(self.applied_date)

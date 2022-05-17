@@ -17,7 +17,7 @@ def dashboard(request):
 @login_required
 @user_passes_test(is_counsellor)
 def view_outing_forms(request):
-    return render(request,"counsellor/view_outing_forms.html",{"forms":Gatepass.objects.filter(counsellor=request.user,approved=False,is_emergency=False,deny=False,counsellor_sign=False)})
+    return render(request,"counsellor/view_outing_forms.html",{"forms":Gatepass.objects.filter(counsellor=request.user,approved=False,is_emergency=False,deny=False,counsellor_sign=False),"teacher":"counsellor"})
 
 @login_required
 @user_passes_test(is_counsellor)
