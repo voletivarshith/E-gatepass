@@ -7,7 +7,7 @@
     <form method="POST">
         {% csrf_token %}
         {% for i in messages %}
-            <p>{{i}} {{i.tags}}</p>
+            <p>{{i}}</p>
         {% endfor %}
         <!-- Username password first name last name is student is hod is  -->
         <p>Username</p>
@@ -21,6 +21,7 @@
         <p>Is Yearcoordinator <input type="checkbox" name="permission" value="Yearcoordinator"></p>
         <p>Is HOD <input type="checkbox" name="permission" value="HOD"></p>
         <p>Is Principal <input type="checkbox" name="permission" value="Principal"></p>
+        <p>Is Warden <input type="checkbox" name="permission" value="Warden"></p>
         <p></p>
         <input type="submit" value="Create">
     </form>

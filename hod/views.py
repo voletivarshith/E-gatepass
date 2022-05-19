@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from db.models import Gatepass,User
 from django.contrib import messages
+from decouple import config
 def is_hod(user):
     if user.is_hod:
         return True
@@ -15,13 +16,13 @@ def dashboard(request):
 @login_required
 @user_passes_test(is_hod)
 def outing_forms(request):
-    return render(request,"hod/outing_forms.html",{"forms":Gatepass.objects.filter(year_coordinator_sign=True,approved=False,student__department=request.user.department),"title":"Pending outing forms"})
+    return render(request,"hod/outing_forms.html",{"forms":Gatepass.objects.filter(year_coordinator_sign=True,approved=False,student__department=request.user.department,deny=False),"title":"Pending outing forms"})
 
 
 @login_required
 @user_passes_test(is_hod)
 def denied_outing_forms(request):
-    return render(request,"hod/outing_forms.html",{"forms":Gatepass.objects.filter(year_coordinator_sign=True,student__year=request.user.year,deny=True),"title":'Denied outing forms',})
+    return render(request,"hod/outing_forms.html",{"forms":Gatepass.objects.filter(year_coordinator_sign=True,student__department=request.user.department,deny=True),"title":'Denied outing forms',})
 
 @login_required
 @user_passes_test(is_hod)
@@ -65,3 +66,11 @@ def change_student_password(request,id):
         messages.error(request,"Changed user password")
         return redirect("hod:view-students")
     return render(request,"hod/change_password.html")
+
+
+@login_required
+@user_passes_test(is_hod)
+def create_student_user(request):
+    z = User(username=request.POST.get("username"),email=request.POST.get("email"))
+    z.set_password(config("STUDENT_PASSWORD"))
+    return render(request,"hod/create_student_user.html",)

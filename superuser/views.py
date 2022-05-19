@@ -35,6 +35,8 @@ def createuser(request):
                     user_obj.is_hod=True
                 elif permission == "Principal":
                     user_obj.is_staff=True
+                elif permission == "Warden":
+                    user_obj.is_warden = True
                 else:
                     messages.error(request,"Select a permission")
                     flag=0
@@ -74,7 +76,7 @@ def dashboard(request):
 @user_passes_test(is_superuser)
 def users(request,num=1):
     if num==1:
-        active_users_query = User.objects.filter(is_staff=True,is_active=True)
+        active_users_query = User.objects.filter(is_staff=True,is_active=True).exclude(is_superuser=True)
         #Principal
     elif num==2:
         active_users_query = User.objects.filter(is_hod=True,is_active=True)        #HOD

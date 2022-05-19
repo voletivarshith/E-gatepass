@@ -9,5 +9,5 @@ urlpatterns = [
     path("denied-outing-forms/",denied_outing_forms,name="denied-outing-forms"),
     #URL's for modifying student
     path("view-students/",view_students,name="view-students"),
-    path("change-password/<int:id>/",change_student_password,name="change-student_password")
+    path("change-password/<int:id>/",change_student_password,name="change-student_password"),
 ]
