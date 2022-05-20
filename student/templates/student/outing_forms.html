@@ -14,9 +14,29 @@
             <p>Reason for leave {{i.reason_for_leave}}</p>
             <p>Parents name {{i.parents_name}}</p>
             <p>Parents mobile no {{i.parents_pno}}</p>
+            {% if flag %}
+                <p>Counsellor</p>
+                {% if i.counsellor_sign %}
+                    <p>&#x2713;</p>
+                {% else %}
+                    <p>&#x2717;</p>
+                {% endif %}
+                <p>Year Coordinator</p>
+                {% if i.year_coordinator_sign %}
+                    <p>&#x2713;</p>
+                {% else %}
+                    <p>&#x2717;</p>
+                {% endif %}
+                <p>HOD</p>
+                {% if i.hod_sign %}
+                    <p>&#x2713;</p>
+                {% else %}
+                    <p>&#x2717;</p>
+                {% endif %}
+            {% endif %}
         {% endfor %}
     {% else %}
-        <h1>No record found</h1>
+        <p>No record found</p>
     {% endif %}
 </body>
 </html>

@@ -8,10 +8,12 @@ def is_hod(user):
         return True
     return False
 
+
 @login_required
 @user_passes_test(is_hod)
 def dashboard(request):
     return render(request,"hod/dashboard.html")
+
 
 @login_required
 @user_passes_test(is_hod)
@@ -24,6 +26,7 @@ def outing_forms(request):
 def denied_outing_forms(request):
     return render(request,"hod/outing_forms.html",{"forms":Gatepass.objects.filter(year_coordinator_sign=True,student__department=request.user.department,deny=True),"title":'Denied outing forms',})
 
+
 @login_required
 @user_passes_test(is_hod)
 def approve_outing_form(request,id):
@@ -33,6 +36,7 @@ def approve_outing_form(request,id):
     to_be_approved.save()
     messages.error(request,"Approved outing form")
     return redirect("hod:view-outing-forms")
+
 
 @login_required
 @user_passes_test(is_hod)
@@ -49,6 +53,7 @@ def deny_outing_form(request,id):
 def view_students(request):
     return render(request,"hod/view_students.html",{"students":User.objects.filter(department = request.user.department,is_student= True).order_by("year"),"title":"Students"})
 
+
 @login_required
 @user_passes_test(is_hod)
 def change_student_password(request,id):
@@ -60,17 +65,26 @@ def change_student_password(request,id):
     if student.department!=request.user.department:
         messages.error(request,"You cant access this page")
         return redirect("hod:view-students")
-    if request.method=="POST":
-        student.set_password(request.POST.get("password"))
-        student.save()
-        messages.error(request,"Changed user password")
-        return redirect("hod:view-students")
-    return render(request,"hod/change_password.html")
+    student.set_password(config("STUDENT_PASSWORD"))
+    student.save()
+    messages.success(request,"Changed password successfully")
+    return redirect("hod:hod-dashboard")
 
 
 @login_required
 @user_passes_test(is_hod)
 def create_student_user(request):
-    z = User(username=request.POST.get("username"),email=request.POST.get("email"))
-    z.set_password(config("STUDENT_PASSWORD"))
+    if request.user.department==None:
+            messages.error(request,"The deparment not set to your account contact Adminstrator")
+            return redirect("hod:hod-dashboard")
+    if request.method=="POST":
+        first_name = request.POST.get("firstname")
+        last_name = request.POST.get("lastname")
+        username = first_name+"_"+last_name
+        z = User(username=username,email=request.POST.get("email"),first_name=first_name,last_name=last_name,year = request.POST.get("year"))
+        z.set_password(config("STUDENT_PASSWORD"))
+        z.department = request.user.department
+        z.save()
+        messages.success(request,"Created student account")
+        return redirect("hod:hod-dashboard")
     return render(request,"hod/create_student_user.html",)

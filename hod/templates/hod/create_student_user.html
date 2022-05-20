@@ -4,8 +4,14 @@
     <title>Create student user</title>
 </head>
 <body>
-    <form>
-        <p>Default password is RMDEC</p>
+    <p>Default password is RMDEC</p>
+    <form method="POST">
+        {% csrf_token %}
+        <p>First name <input type="text" name="firstname" required></p>
+        <p>Last name <input type="text" name="lastname" required></p>
+        <p>Email <input type="email" name="email" required></p>
+        <p>Year <input type="number" name="year" required></p>
+        <input type="submit" name="Create">
     </form>
 </body>
 </html>

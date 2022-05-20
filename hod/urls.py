@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import dashboard,outing_forms,denied_outing_forms,deny_outing_form,approve_outing_form,view_students,change_student_password
+from .views import create_student_user,dashboard,outing_forms,denied_outing_forms,deny_outing_form,approve_outing_form,view_students,change_student_password
 urlpatterns = [
     path("",dashboard,name="hod-dashboard"),
     #URL's for outing forms
@@ -10,4 +10,5 @@ urlpatterns = [
     #URL's for modifying student
     path("view-students/",view_students,name="view-students"),
     path("change-password/<int:id>/",change_student_password,name="change-student_password"),
+    path("create-student/",create_student_user,name="create-student-user")
 ]

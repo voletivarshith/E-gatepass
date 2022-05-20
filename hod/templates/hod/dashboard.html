@@ -4,9 +4,13 @@
     <title>Dashboard</title>
 </head>
 <body>
+    {% for i in messages %}
+        <p>{{i}}</p>
+    {% endfor %}
     <p><a href="{% url 'hod:view-outing-forms' %}">View outing forms</a></p>
     <p><a href="{% url 'hod:denied-outing-forms' %}">Denied outing forms</a></p>
     <p><a href="{% url 'hod:view-students' %}">View Students</a></p>
+    <p><a href="{% url 'hod:create-student-user' %}">Create student</a></p>
     <p><a href="{% url 'logout' %}">Logout</a></p>
 </body>
 </html>

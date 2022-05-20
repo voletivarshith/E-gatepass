@@ -39,13 +39,18 @@ def apply_gatepass(request):
 @user_passes_test(is_student)
 def previous_outing(request):
     student = User.objects.get(username=request.user)
-    context = {"forms":Gatepass.objects.filter(student=student,is_approved=True),"title":"Approved outing forms"}
+    context = {"forms":Gatepass.objects.filter(student=student,approved=True),"title":"Approved outing forms"}
     return render(request,"student/outing_forms.html",context)
 
 @login_required
 @user_passes_test(is_student)
 def pending_outing_forms(request):
     student = User.objects.get(username=request.user)
-    print(type(request.user))
-    context = {"forms":Gatepass.objects.filter(student=student),"title":"Pending outing forms"}
+    context = {"forms":Gatepass.objects.filter(student=student,approved=False),"title":"Pending outing forms","flag":1}
     return render(request,"student/outing_forms.html",context)
+
+
+@login_required
+@user_passes_test(is_student)
+def view_outing_forms(request):
+    return render(request,"student/outing_forms.html")

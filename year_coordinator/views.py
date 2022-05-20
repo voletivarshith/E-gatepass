@@ -21,7 +21,9 @@ def view_outing_forms(request):
 @login_required
 @user_passes_test(logged_user_year_coordinator)
 def denied_outing_forms(request):
-    return render(request,"year_coordinator/view_outing_forms.html",{"forms":Gatepass.objects.filter(approved=False,counsellor_sign=True,student__year=request.user.year,deny=True),"title":'Denied outing forms'})
+    return render(request,"year_coordinator/view_outing_forms.html",{"forms":Gatepass.objects.filter(approved=False ,
+    student__year=request.user.year,
+    deny=True,counsellor_sign=True,year_coordinator_sign=False),"title":'Denied outing forms'})
 
 @login_required
 @user_passes_test(logged_user_year_coordinator)

@@ -9,14 +9,14 @@
         <p>{{i}}</p>
     {% endfor %}
     <table style="border:1 solid">
-        <tr>Username</tr>
-        <tr>Year</tr>
-        <tr>Change password</tr>
-        <tr>
+        <tr><td>Username</td><td>Year</td><td>Change password</td><tr>
+            
             {% for i in students %}
-                <td>{{i.username}}</td>
-                <td>{{i.year}}</td>
-                <td><a href="{% url 'hod:change-student_password' id=i.id %}">Change password</a></td>
+                <tr>
+                    <td>{{i.username}}</td>
+                    <td>{{i.year}}</td>
+                    <td><a href="{% url 'hod:change-student_password' id=i.id %}">Change password</a></td>
+                </tr>
             {% endfor %}
         </tr>
     </table>

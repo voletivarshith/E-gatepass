@@ -41,4 +41,4 @@ def deny_outing_form(request,id):
 @login_required
 @user_passes_test(is_counsellor)
 def denied_outing_forms(request):
-    return render(request,"counsellor/denied_outing_forms.html",{"forms":Gatepass.objects.filter(counsellor=request.user,approved=False,is_emergency=False,deny=True)})
+    return render(request,"counsellor/denied_outing_forms.html",{"forms":Gatepass.objects.filter(counsellor=request.user,approved=False,is_emergency=False,deny=True,counsellor_sign=False)})
