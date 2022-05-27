@@ -26,6 +26,8 @@ def user_login(request):
                 return redirect("counsellor:counsellor-dashboard")
             elif request.user.is_student:
                 return redirect("student:student-dashboard")
+            elif request.user.is_warden:
+                return redirect("warden:warden-dashboard")
         else:
             messages.error(request,"Invalid username or password")
     return render(request,"db/login.html",)

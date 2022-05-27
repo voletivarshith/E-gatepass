@@ -67,6 +67,7 @@ class Gatepass(models.Model):
     principal_sign = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
     deny = models.BooleanField(default=False)
+    is_printed = models.BooleanField(default=False)
     def save(self,*args,**kwargs):
         if self._state.adding:
             from datetime import date
