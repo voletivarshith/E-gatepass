@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import user_passes_test,login_required
 from db.models import Gatepass
 
@@ -22,3 +22,15 @@ def print_outing_forms(request):
 @user_passes_test(is_warden)
 def approved_outing_forms(request):
     return render(request,"warden/approved_outing_forms.html",{"forms":Gatepass.objects.filter(is_printed = True)})
+
+@login_required
+@user_passes_test(is_warden)
+def print_outing_form(request,id):
+    z = Gatepass.objects.get(id=id)
+    if z.is_printed:
+        return redirect("warden:print-outing-forms")
+    if request.method=="POST":
+        z.is_printed=True
+        z.save()
+        return redirect("warden:print-outing-forms")
+    return render(request,"warden/gatepass.html",{"form":z})

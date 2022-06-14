@@ -9,7 +9,7 @@
     {% endfor %}
     <h1>{{title}}</h1>
     {% for i in forms %}
-        <p><a href="#">{{i.student.username}}_{{i.from_date}}_{{i.to_date}}</a></p>
+        <p>ID: <a href="{% url 'warden:print-outing-form' id=i.id %}">{{i.id}}</a></p>
         <p>{{i.student.first_name}} {{i.student.last_name}}</p>
         <p>{{i.student.email}}</p>
         <p>Department {{i.student.department}}</p>

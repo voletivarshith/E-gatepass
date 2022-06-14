@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gatepass</title>
+</head>
+<body>
+    <h1>Gatepass form</h1>
+    <p>{{form.student.first_name}} {{form.student.last_name}}</p>
+    {% if form.is_emergency %}
+        <p>Emergency Outing</p>
+    {% endif %}
+    <p>{{form.student.email}}</p>
+    <p>Department {{form.student.department}}</p>
+    <p>Year {{form.year}}</p>
+    <p>Applied on {{form.applied_date}}</p>
+    <p>From date {{form.from_date}}</p>
+    <p>To date {{form.to_date}}</p>
+    <p>Place {{form.place}}</p>
+    <p>Reason for leave {{form.reason_for_leave}}</p>
+    <p>Parent name {{form.parents_name}}</p>
+    <p>Parent's phone number {{form.parents_pno}}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Done">
+    </form>
+</body>
+</html>
