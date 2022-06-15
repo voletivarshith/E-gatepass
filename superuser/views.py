@@ -3,10 +3,12 @@ from django.contrib.auth.decorators import user_passes_test
 from db.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 def is_superuser(user):
     return user.is_superuser
 
+@csrf_exempt
 @login_required
 @user_passes_test(is_superuser)
 def createuser(request):
@@ -46,7 +48,7 @@ def createuser(request):
                     messages.success(request,"Successfully created account")
     return render(request,"superuser/createuser.html")
 
-
+@csrf_exempt
 def createsuperuser(request):
     if request.method=="POST":
         username = request.POST.get("username")
@@ -65,13 +67,13 @@ def createsuperuser(request):
                 user_obj.save()
     return render(request,"superuser/createsuperuser.html")
 
-
+@csrf_exempt
 @login_required
 @user_passes_test(is_superuser)
 def dashboard(request):
     return render(request,"superuser/dashboard.html")
 
-
+@csrf_exempt
 @login_required
 @user_passes_test(is_superuser)
 def users(request,num=1):
@@ -93,6 +95,7 @@ def users(request,num=1):
         messages.error(request,"Invalid url")
     return render(request,"superuser/users.html",{"active_users_query":active_users_query})
 
+@csrf_exempt
 @login_required
 @user_passes_test(is_superuser)
 def delete_user(request,num):
@@ -105,7 +108,8 @@ def delete_user(request,num):
         messages.error(request,"User does not exists")
     return redirect("superuser:super-user-dashboard")
 
+@csrf_exempt
 @login_required
-@user_passes_test
+@user_passes_test(is_superuser)
 def user_details(request,num):
     pass

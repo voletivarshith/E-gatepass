@@ -51,7 +51,7 @@ def deny_outing_form(request,id):
 @login_required
 @user_passes_test(is_hod)
 def view_students(request):
-    return render(request,"hod/view_students.html",{"students":User.objects.filter(department = request.user.department,is_student= True).order_by("year"),"title":"Students"})
+    return render(request,"hod/view_students.html",{"students":User.objects.filter(department = request.user.department,is_student= True).order_by("year",'username'),"title":"Students"})
 
 
 @login_required

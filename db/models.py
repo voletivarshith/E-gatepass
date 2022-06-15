@@ -76,4 +76,4 @@ class Gatepass(models.Model):
             self.approved = True
         super().save(*args,**kwargs)
     def __str__(self):
-        return str(self.student)+"**Outing**"+str(self.applied_date)
+        return str(self.student)+"**Outing form**"+str(self.applied_date)

@@ -46,7 +46,8 @@ def previous_outing(request):
 @user_passes_test(is_student)
 def pending_outing_forms(request):
     student = User.objects.get(username=request.user)
-    context = {"forms":Gatepass.objects.filter(student=student,approved=False),"title":"Pending outing forms","flag":1}
+    outing_form = Gatepass.objects.filter(student=student,approved=False)
+    context = {"forms":outing_form,"title":"Pending outing forms","flag":1}
     return render(request,"student/outing_forms.html",context)
 
 

@@ -14,7 +14,7 @@
             <p>Reason for leave {{i.reason_for_leave}}</p>
             <p>Parents name {{i.parents_name}}</p>
             <p>Parents mobile no {{i.parents_pno}}</p>
-            {% if flag %}
+            {% if not i.is_emergency and flag %}
                 <p>Counsellor</p>
                 {% if i.counsellor_sign %}
                     <p>&#x2713;</p>
